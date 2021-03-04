@@ -1,9 +1,3 @@
-ID da chave de acesso
-AKIA55U6D7FTMIVNKZT5
-
-Chave de acesso secreta
-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
-
 name: Deploy chat-clone - S3
 
 on:
