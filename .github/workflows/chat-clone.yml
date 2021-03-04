@@ -1,4 +1,4 @@
-name: Deploy Treinazap - S3
+name: Deploy Chat clone - S3
 
 on:
   workflow_dispatch:
