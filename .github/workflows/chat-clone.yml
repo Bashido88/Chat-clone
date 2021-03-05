@@ -19,7 +19,7 @@ jobs:
       - name: CHECK FILE
         run: cat src/firebase.js
       - name: INSTALL E BUILD
-	run: npm install && npm run build
+        run: npm install && npm run build
         env:
            CI: "false"
       - name: DEPLOY S3
