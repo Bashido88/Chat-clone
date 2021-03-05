@@ -1,6 +1,8 @@
 name: Deploy chat-clone - S3
+
 on:
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -11,11 +13,13 @@ jobs:
         run: doppler secrets download --no-file --format=docker >> $GITHUB_ENV; 
         env:
            DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN_PRD }}
+
+    
       - uses: actions/setup-node@v1
         with:
           node-version: 12.21.0
       - name: SET ENV FIREBASE
-        run: envsubst <src/firebasedeploy.js> src/firebase.js
+        run: envsubst <src/firebase-deploy.js> src/firebase.js
       - name: CHECK FILE
         run: cat src/firebase.js
       - name: INSTALL E BUILD
@@ -24,4 +28,5 @@ jobs:
            CI: "false"
       - name: DEPLOY S3
         run: cd build && AWS_ACCESS_KEY_ID=${ACCESS_KEY} AWS_SECRET_ACCESS_KEY=${SECRET_KEY} aws s3 sync . s3://arthur-aws --acl public-read --delete
-        run: AWS_ACCESS_KEY_ID=${ACCESS_KEY} AWS_SECRET_ACCESS_KEY=${SECRET_KEY} aws cloudfront create-invalidation --distribution-id E2KDKZ6GBFF7SG --path '/*'
+      - name: CLEAR CACHE
+        run: AWS_ACCESS_KEY_ID=${ACCESS_KEY} AWS_SECRET_ACCESS_KEY=${SECRET_KEY} aws cloudfront create-invalidation --distribution-id E91FKLAV95EGI --path '/*'
