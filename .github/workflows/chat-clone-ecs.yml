@@ -50,6 +50,6 @@ jobs:
           docker build -t chat-clone .
           docker tag chat-clone:latest $ECR_REPOSITORY:latest
           docker push $ECR_REPOSITORY:latest
-          aws ecs update-service --cluster unicorniostech --service chat-clone --force-new-deployment --region us-east-1
+          # aws ecs update-service --cluster unicorniostech --service chat-clone --force-new-deployment --region us-east-1
         - name: CLEAR CACHE
         run: AWS_ACCESS_KEY_ID=${ACCESS_KEY} AWS_SECRET_ACCESS_KEY=${SECRET_KEY} aws cloudfront create-invalidation --distribution-id E2KDKZ6GBFF7SG --path '/*'
