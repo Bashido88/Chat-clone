@@ -1,6 +1,3 @@
-
-aws ecs update-service --cluster unicorniostech --service chat-clone --force-new-deployment --region us-east-1
-
 name: Deploy chat-clone - ECS
 
 on:
