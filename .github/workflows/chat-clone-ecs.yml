@@ -46,8 +46,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: 957035575654.dkr.ecr.us-east-1.amazonaws.com/chat-clone
           IMAGE_TAG: ${{ github.sha }}
-        run: 
-	     docker build . -t chat-clone
+        run: docker build . -t chat-clone
              docker tag chat-clone:latest $ECR_REPOSITORY:latest
              docker push $ECR_REPOSITORY:latest
              
